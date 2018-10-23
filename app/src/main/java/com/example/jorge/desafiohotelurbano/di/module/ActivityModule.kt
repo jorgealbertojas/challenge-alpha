@@ -1,4 +1,4 @@
-package com.example.jorge.desafiohotelurbano.di.modulo
+package com.example.jorge.desafiohotelurbano.di.module
 
 import android.app.Activity
 import com.example.jorge.desafiohotelurbano.ui.main.MainContract

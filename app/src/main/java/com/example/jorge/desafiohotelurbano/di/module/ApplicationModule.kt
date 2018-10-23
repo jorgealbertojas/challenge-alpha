@@ -1,4 +1,4 @@
-package com.example.jorge.desafiohotelurbano.di.modulo
+package com.example.jorge.desafiohotelurbano.di.module
 
 import android.app.Application
 import com.example.jorge.desafiohotelurbano.di.scope.PerApplication

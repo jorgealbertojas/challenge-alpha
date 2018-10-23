@@ -3,7 +3,7 @@ package com.example.jorge.desafiohotelurbano
 import android.app.Application
 import com.example.jorge.desafiohotelurbano.di.component.ApplicationComponent
 import com.example.jorge.desafiohotelurbano.di.component.DaggerApplicationComponent
-import com.example.jorge.desafiohotelurbano.di.modulo.ApplicationModule
+import com.example.jorge.desafiohotelurbano.di.module.ApplicationModule
 
 class BaseApp : Application() {
 

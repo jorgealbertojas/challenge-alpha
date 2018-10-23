@@ -9,8 +9,8 @@ import retrofit2.http.GET
 
 interface ApiServiceInterface {
 
-    @GET("albums")
-    fun getAlbumList(): Observable<List<Results>>
+    @GET("api?q=Rio%20de%20Janeiro")
+    fun getResultsList(): Observable<List<Results>>
 
     companion object Factory {
         fun create(): ApiServiceInterface {
