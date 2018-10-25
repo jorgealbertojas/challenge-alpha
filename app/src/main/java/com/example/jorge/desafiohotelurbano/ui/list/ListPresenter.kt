@@ -2,8 +2,6 @@ package com.example.jorge.desafiohotelurbano.ui.list
 
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Hotels
-import com.example.jorge.desafiohotelurbano.models.Results
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -40,8 +38,8 @@ class ListPresenter : ListContract.Presenter {
         subscriptions.add(subscribe)
     }
 
-    override fun orderHotel(list: Results): List<Hotels> {
-        return  list.results.sortedWith(compareBy({ it.stars }))
+    override fun orderHotel(list: List<Hotels>): List<Hotels> {
+        return  list.sortedWith (compareByDescending({ it.stars }))
     }
 
     override fun loadDataAll() {

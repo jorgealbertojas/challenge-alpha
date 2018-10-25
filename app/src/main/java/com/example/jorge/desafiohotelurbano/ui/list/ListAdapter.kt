@@ -19,7 +19,8 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         var results = list[position]
         holder!!.title!!.setText(results.name)
-        holder!!.mainTitle!!.visibility = View.INVISIBLE
+        holder!!.mainTitle.setText(results.mainTitle)
+        holder!!.layoutMainTitle!!.visibility = View.INVISIBLE
         holder.body!!.setText(results.description)
         holder.layout!!.setOnClickListener {
             listener.itemDetail(results.sku.toString()!!)
@@ -52,9 +53,10 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
 
     class ListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var layout = itemView.findViewById<ConstraintLayout>(R.id.item_layout)
-        val title = itemView.findViewById<TextView>(R.id.item_title)
+        val title = itemView.findViewById<TextView>(R.id.item_description)
         val body = itemView.findViewById<TextView>(R.id.item_body)
-        val mainTitle = itemView.findViewById<LinearLayout>(R.id.item_layout_title)
+        val layoutMainTitle = itemView.findViewById<LinearLayout>(R.id.item_layout_title)
+        val mainTitle = itemView.findViewById<TextView>(R.id.item_title)
 
         fun bind(item: Results) {
             // title = item.post

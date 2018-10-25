@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DesafioHotelUrbano</string>
+
+    <string name="string_package">PACOTES</string>
+    <string name="string_star">estrelas</string>
 </resources>

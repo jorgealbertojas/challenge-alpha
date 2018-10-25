@@ -1,5 +1,6 @@
 package com.example.jorge.desafiohotelurbano.ui.list
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,20 +12,33 @@ import com.example.jorge.desafiohotelurbano.R
 
 import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
+import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
 import kotlinx.android.synthetic.main.fragment_list.*
-import java.util.*
 import javax.inject.Inject
 
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
+    override fun showMainTitle(list: Results, context : Context): List<Hotels> {
+        val res = context?.getResources()
+        list.results.forEach{
+            when (it.stars){
+                0 -> it.mainTitle = res?.getString(R.string.string_package)!!
+                else ->  it.mainTitle = it.stars.toString() + " " + res?.getString(R.string.string_star)
+            }
+        }
+        return list.results
+    }
+
     override fun loadDataSuccess(list: Results) {
 
-        val sortedList = presenter.orderHotel(list)
+        val mainTitleList = showMainTitle(list, this.context!!)
+
+        // Order list hotel based in quantity stars
+        val sortedList = presenter.orderHotel(mainTitleList)
 
         var adapter = ListAdapter(this!!.activity!!, sortedList.toMutableList(), this)
         recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
         recyclerView!!.setAdapter(adapter)
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Inject
