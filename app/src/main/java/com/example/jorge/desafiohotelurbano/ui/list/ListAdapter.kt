@@ -10,25 +10,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.models.Results
+import com.example.jorge.desafiohotelurbano.models.Hotels
 
-class ListAdapter(private val context: Context, private val list: MutableList<Results>,
-                   fragment: Fragment): RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
+class ListAdapter(private val context: Context, private val list: MutableList<Hotels>,
+                  fragment: Fragment): RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         var results = list[position]
 
-/*        fun bind(item: Results) {
-            item
-        }
-
-
-        holder!!.title!!.setText(results)
-        )
-        holder.body!!.setText(results)
-
+        holder!!.title!!.setText(results.name)
+        holder.body!!.setText(results.description)
         holder.layout!!.setOnClickListener {
             listener.itemDetail(results.sku.toString()!!)
-        }*/
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

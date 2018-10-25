@@ -10,7 +10,7 @@ import retrofit2.http.GET
 interface ApiServiceInterface {
 
     @GET("api?q=Rio%20de%20Janeiro")
-    fun getResultsList(): Observable<List<Results>>
+    fun   getResultsList(): Observable<Results>
 
     companion object Factory {
         fun create(): ApiServiceInterface {

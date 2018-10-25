@@ -16,6 +16,12 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
+    override fun loadDataSuccess(list: Results) {
+        var adapter = ListAdapter(this!!.activity!!, list.results.toMutableList(), this)
+        recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
+        recyclerView!!.setAdapter(adapter)
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     @Inject
     lateinit var presenter: ListContract.Presenter
@@ -60,21 +66,21 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
         Log.e("Error", error)
     }
 
-    override fun loadDataSuccess(list: List<Results>) {
+/*    override fun loadDataSuccess(list: List<Results>) {
         var adapter = ListAdapter(this!!.activity!!, list.toMutableList(), this)
         recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
         recyclerView!!.setAdapter(adapter)
 
-/*        val swipeHandler = object : SwipeToDelete(activity) {
+*//*        val swipeHandler = object : SwipeToDelete(activity) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val adapter = recyclerView.adapter as ListAdapter
                 adapter.removeAt(viewHolder.adapterPosition)
             }
-        }*/
+        }*//*
 
        // val itemTouchHelper = ItemTouchHelper(swipeHandler)
         //itemTouchHelper.attachToRecyclerView(recyclerView)
-    }
+    }*/
 
 
     override fun itemRemoveClick(post: Results) {

@@ -28,9 +28,9 @@ class ListPresenter : ListContract.Presenter {
     override fun loadData() {
         var subscribe = api.getResultsList().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ list: List<Results>? ->
+            .subscribe({ results ->
                 view.showProgress(false)
-                view.loadDataSuccess(list!!.take(10))
+                view.loadDataSuccess(results)
             }, { error ->
                 view.showProgress(false)
                 view.showErrorMessage(error.localizedMessage)
