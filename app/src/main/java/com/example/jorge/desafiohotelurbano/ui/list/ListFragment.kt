@@ -13,11 +13,15 @@ import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Results
 import kotlinx.android.synthetic.main.fragment_list.*
+import java.util.*
 import javax.inject.Inject
 
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
     override fun loadDataSuccess(list: Results) {
-        var adapter = ListAdapter(this!!.activity!!, list.results.toMutableList(), this)
+
+        val sortedList = presenter.orderHotel(list)
+
+        var adapter = ListAdapter(this!!.activity!!, sortedList.toMutableList(), this)
         recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
         recyclerView!!.setAdapter(adapter)
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

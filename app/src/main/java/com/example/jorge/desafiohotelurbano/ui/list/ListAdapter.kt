@@ -18,7 +18,6 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         var results = list[position]
-
         holder!!.title!!.setText(results.name)
         holder!!.mainTitle!!.visibility = View.INVISIBLE
         holder.body!!.setText(results.description)
