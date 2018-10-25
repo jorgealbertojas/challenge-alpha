@@ -5,19 +5,39 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:id="@+id/item_layout">
 
-    <TextView
+    android:id="@+id/item_layout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/item_layout_title"
+        android:layout_height="50dp">
+        <TextView
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
+        android:text="item_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#DE111111"
+            android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/item_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        android:text="item_description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#DE111111"
+        app:layout_constraintTop_toBottomOf="@+id/item_layout_title"
+ />
 
     <TextView
         android:id="@+id/item_body"
@@ -26,7 +46,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#8A000000"
         android:ellipsize="end"
+        android:layout_margin="8dp"
         android:maxLines="2"
-        app:layout_constraintTop_toBottomOf="@+id/item_title" />
+        android:text="item_body"
+        app:layout_constraintTop_toBottomOf="@+id/item_description" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.models.Results
@@ -19,6 +20,7 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         var results = list[position]
 
         holder!!.title!!.setText(results.name)
+        holder!!.mainTitle!!.visibility = View.INVISIBLE
         holder.body!!.setText(results.description)
         holder.layout!!.setOnClickListener {
             listener.itemDetail(results.sku.toString()!!)
@@ -53,6 +55,7 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         var layout = itemView.findViewById<ConstraintLayout>(R.id.item_layout)
         val title = itemView.findViewById<TextView>(R.id.item_title)
         val body = itemView.findViewById<TextView>(R.id.item_body)
+        val mainTitle = itemView.findViewById<LinearLayout>(R.id.item_layout_title)
 
         fun bind(item: Results) {
             // title = item.post
