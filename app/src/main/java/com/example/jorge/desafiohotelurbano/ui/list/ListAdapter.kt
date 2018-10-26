@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.models.Hotels
+import com.squareup.picasso.Picasso
 
 class ListAdapter(private val context: Context, private val list: MutableList<Hotels>,
                   fragment: Fragment): RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
@@ -20,7 +22,12 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         var results = list[position]
         holder!!.title!!.setText(results.name)
         holder!!.mainTitle.setText(results.mainTitle)
-        holder!!.layoutMainTitle!!.visibility = View.INVISIBLE
+        // Show Main Title when title not null
+        holder!!.layoutMainTitle!!.visibility = if (results.mainTitle != null) View.VISIBLE else View.GONE
+
+
+        val urlHotel = results.gallery[0]?.url
+        Picasso.with(context).load(urlHotel).fit().centerCrop().error(R.mipmap.ic_launcher).into(holder!!.imageHotel)
         holder.body!!.setText(results.description)
         holder.layout!!.setOnClickListener {
             listener.itemDetail(results.sku.toString()!!)
@@ -45,7 +52,6 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
     }
 
 
-
     fun removeAt(position: Int) {
         list.removeAt(position)
         notifyItemRemoved(position)
@@ -57,6 +63,7 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         val body = itemView.findViewById<TextView>(R.id.item_body)
         val layoutMainTitle = itemView.findViewById<LinearLayout>(R.id.item_layout_title)
         val mainTitle = itemView.findViewById<TextView>(R.id.item_title)
+        val imageHotel = itemView.findViewById<ImageView>(R.id.iv_image_hotel)
 
         fun bind(item: Results) {
             // title = item.post

@@ -18,12 +18,28 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
+
     override fun showMainTitle(list: Results, context : Context): List<Hotels> {
+
+        val numbers: MutableList<Int> = mutableListOf()
+
         val res = context?.getResources()
+
         list.results.forEach{
             when (it.stars){
-                0 -> it.mainTitle = res?.getString(R.string.string_package)!!
-                else ->  it.mainTitle = it.stars.toString() + " " + res?.getString(R.string.string_star)
+
+                0 -> {
+                    if (it.stars !in numbers) {
+                        it.mainTitle = res?.getString(R.string.string_package)!!
+                        numbers.add(0)
+                    }
+                }
+                else -> {
+                    if (it.stars !in numbers) {
+                        it.mainTitle = it.stars.toString() + " " + res?.getString(R.string.string_star)
+                        numbers.add(it.stars)
+                    }
+                }
             }
         }
         return list.results
