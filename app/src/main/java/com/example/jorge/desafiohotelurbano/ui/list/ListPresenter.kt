@@ -1,5 +1,6 @@
 package com.example.jorge.desafiohotelurbano.ui.list
 
+import android.content.Context
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -7,6 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class ListPresenter : ListContract.Presenter {
+
 
     private val subscriptions = CompositeDisposable()
     private val api: ApiServiceInterface = ApiServiceInterface.create()

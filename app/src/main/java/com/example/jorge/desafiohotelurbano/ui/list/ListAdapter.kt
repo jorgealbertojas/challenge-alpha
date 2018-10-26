@@ -30,7 +30,7 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         Picasso.with(context).load(urlHotel).fit().centerCrop().error(R.mipmap.ic_launcher).into(holder!!.imageHotel)
         holder.body!!.setText(results.description)
         holder.layout!!.setOnClickListener {
-            listener.itemDetail(results.sku.toString()!!)
+            listener.itemDetail(results)!!
         }
     }
 
@@ -72,7 +72,7 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
     }
 
     interface onItemClickListener {
-        fun itemRemoveClick(post: Results)
-        fun itemDetail(postId : String)
+        fun itemRemoveClick(postId: String)
+        fun itemDetail(hotels: Hotels)
     }
 }

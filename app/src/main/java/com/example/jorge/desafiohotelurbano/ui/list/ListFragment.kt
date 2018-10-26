@@ -9,15 +9,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.jorge.desafiohotelurbano.R
-
 import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
+import com.example.jorge.desafiohotelurbano.ui.detail.DetailFragment
+import com.example.jorge.desafiohotelurbano.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
+    override fun showDetailFragment(hotels: Hotels) {
+        if (activity!!.supportFragmentManager.findFragmentByTag(DetailFragment.TAG) == null) {
+            activity!!.supportFragmentManager.beginTransaction()
+                .addToBackStack(null)
+
+                .setCustomAnimations(MainActivity.AnimType.FADE.getAnimPair().first, MainActivity.AnimType.FADE.getAnimPair().second)
+                .replace(R.id.frame, DetailFragment().newInstance(hotels), DetailFragment.TAG)
+                .commit()
+        } else {
+            // Maybe an animation like shake hello text
+        }
+
+    }
 
     override fun showMainTitle(list: Results, context : Context): List<Hotels> {
 
@@ -117,12 +131,13 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     }*/
 
 
-    override fun itemRemoveClick(post: Results) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun itemRemoveClick(postId: String) {
+
+        TODO("not implemented")
     }
 
-    override fun itemDetail(postId: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun itemDetail(hotels : Hotels) {
+        showDetailFragment(hotels)
     }
 
     private fun injectDependency() {
@@ -140,4 +155,7 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     companion object {
         val TAG: String = "ListFragment"
     }
+
+
+
 }
