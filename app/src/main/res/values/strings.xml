@@ -3,4 +3,7 @@
 
     <string name="string_package">PACOTES</string>
     <string name="string_star">estrelas</string>
+
+    <string name="string_amenities">Não existe amenidades</string>
+    <string name="string_money">R$ </string>
 </resources>

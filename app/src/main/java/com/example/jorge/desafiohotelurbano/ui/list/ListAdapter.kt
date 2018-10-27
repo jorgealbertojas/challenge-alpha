@@ -25,10 +25,41 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         // Show Main Title when title not null
         holder!!.layoutMainTitle!!.visibility = if (results.mainTitle != null) View.VISIBLE else View.GONE
 
-
         val urlHotel = results.gallery[0]?.url
         Picasso.with(context).load(urlHotel).fit().centerCrop().error(R.mipmap.ic_launcher).into(holder!!.imageHotel)
         holder.body!!.setText(results.description)
+
+        val res = context?.getResources()
+        holder.price!!.setText(res.getString(R.string.string_money) + results.price.current_price?.toString())
+        holder.city!!.setText(results.address?.city!!)
+        holder.state!!.setText(results.address?.state!!)
+
+
+
+        when (results.amenities.size){
+            0 -> {
+                holder.amenities1!!.setText(res?.getString(R.string.string_amenities))
+                holder.amenities2!!.setText("")
+                holder.amenities3!!.setText("")
+            }
+            1 -> {
+                holder.amenities1!!.setText(results?.amenities[0]?.name!!)
+                holder.amenities2!!.setText("")
+                holder.amenities3!!.setText("")
+            }
+            2 -> {
+                holder.amenities1!!.setText(results?.amenities[0]?.name!!)
+                holder.amenities2!!.setText(results?.amenities[1]?.name!!)
+                holder.amenities3!!.setText("")
+            }
+            else -> {
+                holder.amenities1!!.setText(results?.amenities[0]?.name!!)
+                holder.amenities2!!.setText(results?.amenities[1]?.name!!)
+                holder.amenities3!!.setText(results?.amenities[2]?.name!!)
+            }
+        }
+
+
         holder.layout!!.setOnClickListener {
             listener.itemDetail(results)!!
         }
@@ -58,12 +89,20 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
     }
 
     class ListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        var layout = itemView.findViewById<ConstraintLayout>(R.id.item_layout)
-        val title = itemView.findViewById<TextView>(R.id.item_description)
-        val body = itemView.findViewById<TextView>(R.id.item_body)
-        val layoutMainTitle = itemView.findViewById<LinearLayout>(R.id.item_layout_title)
-        val mainTitle = itemView.findViewById<TextView>(R.id.item_title)
+        var layout = itemView.findViewById<ConstraintLayout>(R.id.cl_item_layout)
+        val title = itemView.findViewById<TextView>(R.id.tv_item_description)
+        val body = itemView.findViewById<TextView>(R.id.tv_item_body)
+        val layoutMainTitle = itemView.findViewById<LinearLayout>(R.id.ll_item_layout_title)
+        val mainTitle = itemView.findViewById<TextView>(R.id.tv_item_title)
         val imageHotel = itemView.findViewById<ImageView>(R.id.iv_image_hotel)
+
+        val price = itemView.findViewById<TextView>(R.id.tv_price)
+        val city = itemView.findViewById<TextView>(R.id.tv_city)
+        val state = itemView.findViewById<TextView>(R.id.tv_state)
+        val amenities1 = itemView.findViewById<TextView>(R.id.tv_amenities1)
+        val amenities2 = itemView.findViewById<TextView>(R.id.tv_amenities2)
+        val amenities3 = itemView.findViewById<TextView>(R.id.tv_amenities3)
+
 
         fun bind(item: Results) {
             // title = item.post

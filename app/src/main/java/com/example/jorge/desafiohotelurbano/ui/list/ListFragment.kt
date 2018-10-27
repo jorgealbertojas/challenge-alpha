@@ -24,7 +24,7 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
             activity!!.supportFragmentManager.beginTransaction()
                 .addToBackStack(null)
 
-                .setCustomAnimations(MainActivity.AnimType.FADE.getAnimPair().first, MainActivity.AnimType.FADE.getAnimPair().second)
+                .setCustomAnimations(MainActivity.AnimType.FADE.getAnimPair().first!!, MainActivity.AnimType.FADE.getAnimPair().second!!)
                 .replace(R.id.frame, DetailFragment().newInstance(hotels), DetailFragment.TAG)
                 .commit()
         } else {

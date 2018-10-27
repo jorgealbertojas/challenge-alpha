@@ -2,6 +2,7 @@ package com.example.jorge.desafiohotelurbano.ui.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.util.Pair
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.di.component.DaggerActivityComponent
 import com.example.jorge.desafiohotelurbano.di.module.ActivityModule
@@ -14,7 +15,7 @@ class MainActivity: AppCompatActivity(), MainContract.View {
     override fun showListFragment() {
         supportFragmentManager.beginTransaction()
             .disallowAddToBackStack()
-            .setCustomAnimations(AnimType.SLIDE.getAnimPair().first, AnimType.SLIDE.getAnimPair().second)
+            .setCustomAnimations(AnimType.SLIDE.getAnimPair().first!!, AnimType.SLIDE.getAnimPair().second!!)
             .replace(R.id.frame, ListFragment().newInstance(), ListFragment.TAG)
             .commit()
     }
