@@ -30,7 +30,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:cardCornerRadius="16dp"
@@ -40,16 +40,15 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="250dp">
+
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
                 android:id="@+id/iv_image_hotel"
-                app:layout_constraintDimensionRatio="H,16:9"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="spread_inside"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
 
             <TextView
                 android:id="@+id/tv_item_description"
@@ -57,23 +56,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@+id/iv_image_hotel"
                 android:padding="@dimen/action_padding"
                 android:singleLine="@dimen/title1_text"
+                android:text="dcwdcvvbbv"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/colorText1"
-                app:layout_constraintTop_toBottomOf="@+id/iv_image_hotel" />
+ />
 
             <TextView
                 android:id="@+id/tv_item_body"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:singleLine="@dimen/title2_text"
                 android:textColor="@color/colorText2"
+                app:layout_constraintStart_toEndOf="@+id/iv_image_hotel"
                 android:ellipsize="end"
                 android:padding="@dimen/action_padding"
                 android:maxLines="3"
-                app:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_description"
+                app:layout_constraintEnd_toEndOf="@+id/viewEnd"
+            />
 
             <TextView
                 android:id="@+id/tv_price"
@@ -84,6 +88,7 @@
                 android:singleLine="@dimen/title3_text"
                 android:textSize="@dimen/title3_text"
                 android:maxLines="1"
+                app:layout_constraintStart_toEndOf="@+id/iv_image_hotel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_body"
                 android:textColor="@color/colorPrimary" />
@@ -99,7 +104,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorText2"
                 app:layout_constraintStart_toEndOf="@+id/tv_item_description"
-                app:layout_constraintTop_toBottomOf="@+id/iv_image_hotel" />
+ />
 
             <TextView
                 android:id="@+id/tv_state"
@@ -112,7 +117,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorText2"
                 app:layout_constraintStart_toEndOf="@+id/tv_city"
-                app:layout_constraintTop_toBottomOf="@+id/iv_image_hotel" />
+ />
 
 
             <TextView
@@ -142,7 +147,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_amenities1"
                 app:layout_constraintEnd_toEndOf="@+id/viewEnd"
                 app:layout_constraintStart_toEndOf="@+id/tv_price"
-            />
+                />
 
             <TextView
                 android:id="@+id/tv_amenities3"

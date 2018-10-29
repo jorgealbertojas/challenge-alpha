@@ -12,6 +12,7 @@ import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 //import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
 import javax.inject.Inject
 
@@ -67,8 +68,46 @@ class DetailFragment : Fragment(), DetailContract.View {
     }
 
     override fun loadMessageSuccess(hotel: Hotels) {
-        tv_item_description.text = hotel.description
-        tv_item_description.visibility = View.VISIBLE
+
+
+        tv_item_body.setText(hotel.description)
+
+
+        val urlHotel = hotel.gallery[0]?.url
+        Picasso.with(context).load(urlHotel).fit().centerCrop().error(R.mipmap.ic_launcher).into(iv_image_hotel)
+
+        tv_item_description.setText(hotel.name)
+
+        val res = context?.getResources()
+        tv_price.setText(res!!.getString(R.string.string_money) + hotel.price.current_price?.toString())
+        tv_city!!.setText(" - " + hotel.address?.city!!)
+        tv_state!!.setText(" - " + hotel.address?.state!!)
+
+
+
+        when (hotel.amenities.size){
+            0 -> {
+                tv_amenities1!!.setText(res?.getString(R.string.string_amenities))
+                tv_amenities2!!.setText("")
+                tv_amenities3!!.setText("")
+            }
+            1 -> {
+                tv_amenities1!!.setText(hotel?.amenities[0]?.name!!)
+                tv_amenities2!!.setText("")
+                tv_amenities3!!.setText("")
+            }
+            2 -> {
+                tv_amenities1!!.setText(hotel?.amenities[0]?.name!!)
+                tv_amenities2!!.setText(hotel?.amenities[1]?.name!!)
+                tv_amenities3!!.setText("")
+            }
+            else -> {
+                tv_amenities1!!.setText(hotel?.amenities[0]?.name!!)
+                tv_amenities2!!.setText(hotel?.amenities[1]?.name!!)
+                tv_amenities3!!.setText(hotel?.amenities[2]?.name!!)
+            }
+        }
+
     }
 
     private fun injectDependency() {

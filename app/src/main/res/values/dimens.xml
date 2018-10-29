@@ -19,6 +19,10 @@
     <dimen name="title2_bottom_padding">16dp</dimen>
     <dimen name="title2_right_and_left_padding">16dp</dimen>
 
+    <dimen name="title3_text">20sp</dimen>
+    <dimen name="title3_bottom_padding">16dp</dimen>
+    <dimen name="title3_right_and_left_padding">16dp</dimen>
+
     <dimen name="action_padding">8dp</dimen>
     <dimen name="action_margin">4dp</dimen>
 </resources>

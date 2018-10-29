@@ -31,8 +31,8 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
 
         val res = context?.getResources()
         holder.price!!.setText(res.getString(R.string.string_money) + results.price.current_price?.toString())
-        holder.city!!.setText(results.address?.city!!)
-        holder.state!!.setText(results.address?.state!!)
+        holder.city!!.setText(" - " + results.address?.city!!)
+        holder.state!!.setText(" - " + results.address?.state!!)
 
 
 
