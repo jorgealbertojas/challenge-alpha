@@ -1,7 +1,7 @@
 package com.example.jorge.desafiohotelurbano.ui.detail
 
-import java.io.Serializable
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +26,7 @@ class DetailFragment : Fragment(), DetailContract.View {
 
     fun newInstance(hotel: Hotels): DetailFragment {
         val args = Bundle()
-        args.putSerializable("HOTELS", hotel as Serializable)
+        args.putParcelable("HOTELS", hotel as Parcelable)
         val fragment = DetailFragment()
         fragment.arguments = args
 
@@ -50,7 +50,7 @@ class DetailFragment : Fragment(), DetailContract.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.attach(this)
         presenter.subscribe()
-        val hotel =   arguments!!.getSerializable("HOTELS") as Hotels
+        val hotel : Hotels =   arguments!!.getParcelable ("HOTELS")
         initView(hotel)
     }
 
@@ -73,38 +73,38 @@ class DetailFragment : Fragment(), DetailContract.View {
         tv_item_body.setText(hotel.description)
 
 
-        val urlHotel = hotel.gallery[0]?.url
+        val urlHotel = hotel.gallery!![0]?.url
         Picasso.with(context).load(urlHotel).fit().centerCrop().error(R.mipmap.ic_launcher).into(iv_image_hotel)
 
         tv_item_description.setText(hotel.name)
 
         val res = context?.getResources()
-        tv_price.setText(res!!.getString(R.string.string_money) + hotel.price.current_price?.toString())
+        tv_price.setText(res!!.getString(R.string.string_money) + hotel.price!!.current_price?.toString())
         tv_city!!.setText(" - " + hotel.address?.city!!)
         tv_state!!.setText(" - " + hotel.address?.state!!)
 
 
 
-        when (hotel.amenities.size){
+        when (hotel.amenities!!.size){
             0 -> {
                 tv_amenities1!!.setText(res?.getString(R.string.string_amenities))
                 tv_amenities2!!.setText("")
                 tv_amenities3!!.setText("")
             }
             1 -> {
-                tv_amenities1!!.setText(hotel?.amenities[0]?.name!!)
+                tv_amenities1!!.setText(hotel?.amenities!![0]?.name!!)
                 tv_amenities2!!.setText("")
                 tv_amenities3!!.setText("")
             }
             2 -> {
-                tv_amenities1!!.setText(hotel?.amenities[0]?.name!!)
-                tv_amenities2!!.setText(hotel?.amenities[1]?.name!!)
+                tv_amenities1!!.setText(hotel?.amenities!![0]?.name!!)
+                tv_amenities2!!.setText(hotel?.amenities!![1]?.name!!)
                 tv_amenities3!!.setText("")
             }
             else -> {
-                tv_amenities1!!.setText(hotel?.amenities[0]?.name!!)
-                tv_amenities2!!.setText(hotel?.amenities[1]?.name!!)
-                tv_amenities3!!.setText(hotel?.amenities[2]?.name!!)
+                tv_amenities1!!.setText(hotel?.amenities!![0]?.name!!)
+                tv_amenities2!!.setText(hotel?.amenities!![1]?.name!!)
+                tv_amenities3!!.setText(hotel?.amenities!![2]?.name!!)
             }
         }
 

@@ -1,7 +1,9 @@
 package com.example.jorge.desafiohotelurbano.ui.list
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -13,6 +15,7 @@ import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
+import com.example.jorge.desafiohotelurbano.ui.detail.DetailActivity
 import com.example.jorge.desafiohotelurbano.ui.detail.DetailFragment
 import com.example.jorge.desafiohotelurbano.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -20,17 +23,34 @@ import javax.inject.Inject
 
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
     override fun showDetailFragment(hotels: Hotels) {
-        if (activity!!.supportFragmentManager.findFragmentByTag(DetailFragment.TAG) == null) {
-            activity!!.supportFragmentManager.beginTransaction()
-                .addToBackStack(null)
 
+      /*  if (activity!!.supportFragmentManager.findFragmentByTag(DetailFragment.TAG) == null) {
+
+            activity!!.supportFragmentManager.beginTransaction()
+                .addToBackStack(ListFragment.TAG)
                 .setCustomAnimations(MainActivity.AnimType.FADE.getAnimPair().first!!, MainActivity.AnimType.FADE.getAnimPair().second!!)
                 .replace(R.id.frame, DetailFragment().newInstance(hotels), DetailFragment.TAG)
                 .commit()
         } else {
             // Maybe an animation like shake hello text
         }
+*/
 
+
+        val intent = Intent(this.activity, DetailActivity::class.java)
+        val args = Bundle()
+        args!!.putParcelable("HOTELS_NEW", hotels  as Parcelable)
+        args!!.putString("HOTELS_NEW1", "ERFGDFDDFB")
+        intent.putExtras(args)
+        startActivity(intent)
+
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState!!.putParcelable("state", recyclerView.layoutManager.onSaveInstanceState())
+        outState!!.putParcelable("list",listResults)
     }
 
     override fun showMainTitle(list: Results, context : Context): List<Hotels> {
@@ -66,15 +86,34 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
         // Order list hotel based in quantity stars
         val sortedList = presenter.orderHotel(mainTitleList)
 
+        ListFragment.listResults = list
+
         var adapter = ListAdapter(this!!.activity!!, sortedList.toMutableList(), this)
         recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
+        if (ListFragment.stateRecyclerView != null) {
+            recyclerView.layoutManager.onRestoreInstanceState(ListFragment.stateRecyclerView)
+        }
         recyclerView!!.setAdapter(adapter)
     }
+
+    override fun loadDataCacheSuccess(list: Results) {
+
+        var adapter = ListAdapter(this!!.activity!!, list.results.toMutableList(), this)
+        recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
+        if (ListFragment.stateRecyclerView != null) {
+            recyclerView.layoutManager.onRestoreInstanceState(ListFragment.stateRecyclerView)
+        }
+        recyclerView!!.setAdapter(adapter)
+    }
+
+
 
     @Inject
     lateinit var presenter: ListContract.Presenter
 
     private lateinit var rootView: View
+
+
 
     fun newInstance(): ListFragment {
         return ListFragment()
@@ -90,11 +129,21 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
         return rootView
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attach(this)
         presenter.subscribe()
-        initView()
+        recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
+
+        if (savedInstanceState != null) {
+            ListFragment.stateRecyclerView = savedInstanceState!!.getParcelable("state")
+            ListFragment.listResults = savedInstanceState!!.getParcelable("list")
+            presenter.loadDataCache(ListFragment.listResults as Results)
+        }else{
+            initView()
+        }
     }
 
     override fun onDestroyView() {
@@ -138,6 +187,7 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
 
     override fun itemDetail(hotels : Hotels) {
         showDetailFragment(hotels)
+        ListFragment.stateRecyclerView = recyclerView.layoutManager.onSaveInstanceState()
     }
 
     private fun injectDependency() {
@@ -153,6 +203,8 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     }
 
     companion object {
+        var stateRecyclerView: Parcelable? = null
+        var listResults: Parcelable? = null
         val TAG: String = "ListFragment"
     }
 

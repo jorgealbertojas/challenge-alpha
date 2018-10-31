@@ -11,12 +11,14 @@ class ListContract {
         fun showMainTitle(list: Results,  context : Context): List<Hotels>
         fun showErrorMessage(error: String)
         fun loadDataSuccess(list: Results)
+        fun loadDataCacheSuccess(list: Results)
         fun showDetailFragment(hotels: Hotels)
 
     }
 
     interface Presenter: BaseContract.Presenter<View> {
         fun loadData()
+        fun loadDataCache(list: Results)
         fun loadDataAll()
         fun orderHotel(list: List<Hotels>): List<Hotels>
         //fun loadDetailData(hotel: Hotels,  context : Context)

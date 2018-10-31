@@ -25,37 +25,37 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         // Show Main Title when title not null
         holder!!.layoutMainTitle!!.visibility = if (results.mainTitle != null) View.VISIBLE else View.GONE
 
-        val urlHotel = results.gallery[0]?.url
+        val urlHotel = results.gallery!![0]?.url
         Picasso.with(context).load(urlHotel).fit().centerCrop().error(R.mipmap.ic_launcher).into(holder!!.imageHotel)
         holder.body!!.setText(results.description)
 
         val res = context?.getResources()
-        holder.price!!.setText(res.getString(R.string.string_money) + results.price.current_price?.toString())
+        holder.price!!.setText(res.getString(R.string.string_money) + results.price!!.current_price?.toString())
         holder.city!!.setText(" - " + results.address?.city!!)
         holder.state!!.setText(" - " + results.address?.state!!)
 
 
 
-        when (results.amenities.size){
+        when (results.amenities!!.size){
             0 -> {
                 holder.amenities1!!.setText(res?.getString(R.string.string_amenities))
                 holder.amenities2!!.setText("")
                 holder.amenities3!!.setText("")
             }
             1 -> {
-                holder.amenities1!!.setText(results?.amenities[0]?.name!!)
+                holder.amenities1!!.setText(results?.amenities!![0]?.name!!)
                 holder.amenities2!!.setText("")
                 holder.amenities3!!.setText("")
             }
             2 -> {
-                holder.amenities1!!.setText(results?.amenities[0]?.name!!)
-                holder.amenities2!!.setText(results?.amenities[1]?.name!!)
+                holder.amenities1!!.setText(results?.amenities!![0]?.name!!)
+                holder.amenities2!!.setText(results?.amenities!![1]?.name!!)
                 holder.amenities3!!.setText("")
             }
             else -> {
-                holder.amenities1!!.setText(results?.amenities[0]?.name!!)
-                holder.amenities2!!.setText(results?.amenities[1]?.name!!)
-                holder.amenities3!!.setText(results?.amenities[2]?.name!!)
+                holder.amenities1!!.setText(results?.amenities!![0]?.name!!)
+                holder.amenities2!!.setText(results?.amenities!![1]?.name!!)
+                holder.amenities3!!.setText(results?.amenities!![2]?.name!!)
             }
         }
 

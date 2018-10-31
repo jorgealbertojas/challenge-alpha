@@ -6,6 +6,7 @@ import android.support.v4.util.Pair
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.di.component.DaggerActivityComponent
 import com.example.jorge.desafiohotelurbano.di.module.ActivityModule
+import com.example.jorge.desafiohotelurbano.ui.detail.DetailFragment
 import com.example.jorge.desafiohotelurbano.ui.list.ListFragment
 import javax.inject.Inject
 
@@ -25,9 +26,7 @@ class MainActivity: AppCompatActivity(), MainContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         injectDependency()
-
         presenter.attach(this)
     }
 
@@ -37,6 +36,17 @@ class MainActivity: AppCompatActivity(), MainContract.View {
             .build()
 
         activityComponent.inject(this)
+    }
+
+    override fun onBackPressed() {
+        val fragmentManager = supportFragmentManager
+        val fragment = fragmentManager.findFragmentByTag(DetailFragment.TAG)
+
+        if (fragment == null) {
+            super.onBackPressed()
+        } else {
+            supportFragmentManager.popBackStack()
+        }
     }
 
     enum class AnimType() {
