@@ -1,17 +1,16 @@
 package com.example.jorge.desafiohotelurbano.ui.list
 
 
+import com.example.jorge.desafiohotelurbano.api.Api
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.util.SchedulerProvider
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ListPresenter @Inject constructor(var api: ApiServiceInterface): ListContract.Presenter {
+class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListContract.Presenter {
     override fun loadDataCache(list: Results) {
         view.loadDataCacheSuccess(list)
     }
@@ -30,8 +29,8 @@ class ListPresenter @Inject constructor(var api: ApiServiceInterface): ListContr
         this.view = view
     }
 
-    override fun loadData(scheduler : SchedulerProvider) {
-        var subscribe = api.getResultsList().subscribeOn(scheduler.io())
+    override fun loadData(scheduler : SchedulerProvider,  observable: Observable<Results>) {
+        var subscribe =  observable.subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
             .subscribe({ results ->
                 view.showProgress(false)

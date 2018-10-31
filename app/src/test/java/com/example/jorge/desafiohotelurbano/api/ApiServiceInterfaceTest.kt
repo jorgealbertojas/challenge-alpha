@@ -8,18 +8,18 @@ import retrofit2.http.GET
 
 interface ApiServiceInterfaceTest {
 
-    @GET("api?q=Rio%20de%20Janeiro")
+    @GET("questions")
     fun   getResultsList(): Observable<Results>
 
     companion object Factory {
-        fun create( baseUrl :String): ApiServiceInterface {
+        fun create( baseUrl :String): ApiServiceInterfaceTest {
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(baseUrl)
                 .build()
 
-            return retrofit.create(ApiServiceInterface::class.java)
+            return retrofit.create(ApiServiceInterfaceTest::class.java)
         }
     }
 }

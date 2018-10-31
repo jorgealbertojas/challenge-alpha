@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.jorge.desafiohotelurbano.R
+import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
@@ -199,7 +200,8 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     }
 
     private fun initView() {
-        presenter.loadData(AppSchedulerProvider())
+        var api : ApiServiceInterface? = null
+        presenter.loadData(AppSchedulerProvider(), api!!.getResultsList())
     }
 
     companion object {

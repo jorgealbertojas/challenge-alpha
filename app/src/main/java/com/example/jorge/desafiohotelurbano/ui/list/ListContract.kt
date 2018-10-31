@@ -6,6 +6,7 @@ import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.ui.base.BaseContract
 import com.example.jorge.desafiohotelurbano.util.SchedulerProvider
 import dagger.Provides
+import io.reactivex.Observable
 import io.reactivex.Scheduler
 
 class ListContract {
@@ -22,7 +23,7 @@ class ListContract {
 
     interface Presenter: BaseContract.Presenter<View> {
 
-        fun loadData(scheduler : SchedulerProvider)
+        fun loadData(scheduler : SchedulerProvider, observable: Observable<Results>)
         fun loadDataCache(list: Results)
         fun loadDataAll()
         fun orderHotel(list: List<Hotels>): List<Hotels>

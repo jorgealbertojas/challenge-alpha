@@ -2,10 +2,12 @@ package com.example.jorge.desafiohotelurbano.homePresenter
 
 
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
+import com.example.jorge.desafiohotelurbano.api.ApiServiceInterfaceTest
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.ui.list.ListContract
 import com.example.jorge.desafiohotelurbano.ui.list.ListPresenter
 import com.example.jorge.desafiohotelurbano.util.Constants
+import com.example.jorge.desafiohotelurbano.util.ConstantsTest
 import com.example.jorge.desafiohotelurbano.util.TestSchedulerProvider
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -17,7 +19,7 @@ import org.junit.Test
 class HomePresentTest {
 
     private val view: ListContract.View = mock()
-    private val api: ApiServiceInterface = mock()
+    private val api: ApiServiceInterfaceTest = mock()
     private lateinit var presenter: ListPresenter
     private lateinit var testScheduler: TestScheduler
 
@@ -25,7 +27,7 @@ class HomePresentTest {
     @Before
     fun setup() {
 
-        presenter = ListPresenter(ApiServiceInterface.create(Constants.BASE_URL))
+        presenter = ListPresenter(ApiServiceInterfaceTest.create(ConstantsTest.BASE_URL_TEST))
         presenter.attach(view)
         presenter.subscribe()
 
