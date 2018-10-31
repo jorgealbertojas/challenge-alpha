@@ -1,13 +1,12 @@
 package com.example.jorge.desafiohotelurbano.api
 
 import com.example.jorge.desafiohotelurbano.models.Results
-import com.example.jorge.desafiohotelurbano.util.Constants
 import io.reactivex.Observable
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-interface ApiServiceInterface {
+interface ApiServiceInterfaceTest {
 
     @GET("api?q=Rio%20de%20Janeiro")
     fun   getResultsList(): Observable<Results>

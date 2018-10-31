@@ -16,10 +16,14 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val intent1: Intent =  getIntent()
-        var bundle :Bundle ?=intent1.extras
+        ShowDetail()
+
+    }
+
+    fun ShowDetail(){
+
+        var bundle :Bundle ?= intent.bundle
         if (bundle != null) {
-            val hotels1 : String = bundle!!.getString("HOTELS_NEW1")
             val hotels : Parcelable = bundle!!.getParcelable("HOTELS_NEW")
             if (this!!.supportFragmentManager.findFragmentByTag(DetailFragment.TAG) == null) {
 
@@ -34,5 +38,18 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         this.finish()
+    }
+
+    companion object IntentOptions {
+        private const val EXTRA_MESSAGE = "HOTELS_NEW"
+
+        var Intent.bundle: Bundle?
+            get() = extras
+            set(bundle) {
+                putExtra(EXTRA_MESSAGE, bundle)
+            }
+
+
+
     }
 }

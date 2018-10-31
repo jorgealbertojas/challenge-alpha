@@ -9,7 +9,7 @@ data class  Gallery(val url : String) : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(url)
+        parcel.writeString(if (url == null) "" else url)
     }
 
     override fun describeContents(): Int {

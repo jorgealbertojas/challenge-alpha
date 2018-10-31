@@ -11,8 +11,8 @@ data class  Amenities(val category : String, val name : String) : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(category)
-        parcel.writeString(name)
+        parcel.writeString(if (category == null) "" else category)
+        parcel.writeString(if (name == null) "" else name)
     }
 
     override fun describeContents(): Int {

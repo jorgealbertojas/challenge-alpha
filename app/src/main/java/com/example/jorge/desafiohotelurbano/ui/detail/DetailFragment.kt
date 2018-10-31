@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
-//import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.squareup.picasso.Picasso

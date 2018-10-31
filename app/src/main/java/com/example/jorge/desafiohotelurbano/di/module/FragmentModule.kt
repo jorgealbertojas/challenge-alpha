@@ -5,8 +5,10 @@ import com.example.jorge.desafiohotelurbano.ui.detail.DetailContract
 import com.example.jorge.desafiohotelurbano.ui.detail.DetailPresenter
 import com.example.jorge.desafiohotelurbano.ui.list.ListContract
 import com.example.jorge.desafiohotelurbano.ui.list.ListPresenter
+import com.example.jorge.desafiohotelurbano.util.Constants
 import dagger.Module
 import dagger.Provides
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 @Module
 class FragmentModule {
@@ -17,12 +19,12 @@ class FragmentModule {
     }
 
     @Provides
-    fun provideListPresenter(): ListContract.Presenter {
-        return ListPresenter()
+    fun provideListPresenter(api: ApiServiceInterface): ListContract.Presenter {
+        return ListPresenter(api)
     }
 
     @Provides
     fun provideApiService(): ApiServiceInterface {
-        return ApiServiceInterface.create()
+        return ApiServiceInterface.create(Constants.BASE_URL)
     }
 }

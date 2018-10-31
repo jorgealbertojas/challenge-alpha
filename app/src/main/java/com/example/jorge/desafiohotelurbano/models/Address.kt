@@ -11,8 +11,8 @@ data class  Address(val city : String, val state : String) : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(city)
-        parcel.writeString(state)
+        parcel.writeString(if (city == null) "" else city)
+        parcel.writeString(if (state == null) "" else state)
     }
 
     override fun describeContents(): Int {

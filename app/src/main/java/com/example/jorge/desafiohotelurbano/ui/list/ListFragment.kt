@@ -16,8 +16,8 @@ import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.ui.detail.DetailActivity
-import com.example.jorge.desafiohotelurbano.ui.detail.DetailFragment
-import com.example.jorge.desafiohotelurbano.ui.main.MainActivity
+import com.example.jorge.desafiohotelurbano.util.AppSchedulerProvider
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
@@ -199,7 +199,7 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     }
 
     private fun initView() {
-        presenter.loadData()
+        presenter.loadData(AppSchedulerProvider())
     }
 
     companion object {
