@@ -3,6 +3,10 @@ package com.example.jorge.desafiohotelurbano.models
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+Model Main Results with Parcelable
+ */
+
 data class  Results(val results : List<Hotels>) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.createTypedArrayList(Hotels)) {
     }

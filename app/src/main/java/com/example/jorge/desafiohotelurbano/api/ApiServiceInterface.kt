@@ -7,7 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Streaming
 import retrofit2.http.Url
-
+/**
+Api for get Json with Retrofit
+ */
 interface ApiServiceInterface {
 
 

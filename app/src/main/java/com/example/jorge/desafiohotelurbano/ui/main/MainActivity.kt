@@ -10,7 +10,9 @@ import com.example.jorge.desafiohotelurbano.ui.detail.DetailFragment
 import com.example.jorge.desafiohotelurbano.ui.list.ListFragment
 import javax.inject.Inject
 
-
+/**
+Main activity get MainContract View
+ **/
 class MainActivity: AppCompatActivity(), MainContract.View {
 
     override fun showListFragment() {

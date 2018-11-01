@@ -2,6 +2,10 @@ package com.example.jorge.desafiohotelurbano.ui.detail
 
 import com.example.jorge.desafiohotelurbano.models.Hotels
 
+/**
+Presenter Detail get function Contract Presenter
+ **/
+
 class DetailPresenter : DetailContract.Presenter {
 
     private lateinit var view: DetailContract.View

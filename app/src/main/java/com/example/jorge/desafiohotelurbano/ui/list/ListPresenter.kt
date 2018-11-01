@@ -8,9 +8,12 @@ import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.util.SchedulerProvider
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
+
+/**
+presenter List get ListContract Presenter
+ **/
 
 class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListContract.Presenter {
     override fun loadDataCache(list: Results) {
@@ -31,6 +34,7 @@ class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListCont
         this.view = view
     }
 
+    // Verify connection internet
     override fun isNetworkAvailable(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         var activeNetworkInfo: NetworkInfo? = null
@@ -38,6 +42,7 @@ class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListCont
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
 
+    // Get service Json
     override fun loadData(scheduler : SchedulerProvider, url : String)  {
 
         var subscribe =  api.getResultsList(url).subscribeOn(scheduler.io())
@@ -53,36 +58,10 @@ class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListCont
         subscriptions.add(subscribe)
     }
 
+    // Order Hotel for major stars
     override fun orderHotel(list: List<Hotels>): List<Hotels> {
         return  list.sortedWith (compareByDescending({ it.stars }))
     }
 
-    override fun loadDataAll() {
-/*        var subscribe = Observable.zip(api.getPostList(), api.getUserList(), api.getAlbumList(),
-            Function3<List<Post>, List<User>, List<Album>, DetailsViewModel> {
-                posts, users, albums ->
-                createDetailsViewModel(posts, users, albums)
-            }).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ model: DetailsViewModel? ->
-                view.showProgress(false)
-                view.loadDataAllSuccess(model!!)
-            },{ error ->
-                view.showProgress(false)
-                view.showErrorMessage(error.localizedMessage)
-            })
 
-        subscriptions.add(subscribe)*/
-    }
-
-/*    private fun createDetailsViewModel(posts: List<Post>, users: List<User>, albums: List<Album>): DetailsViewModel {
-        val postList = posts.take(30)
-        val userList = users.take(30)
-        val albumList = albums.take(30)
-        return DetailsViewModel(postList, userList, albumList)
-    }
-
-    override fun deleteItem(item: Post) {
-        //api.deleteUser(item.id)
-    }*/
 }

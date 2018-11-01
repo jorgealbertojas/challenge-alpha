@@ -17,41 +17,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:id="@+id/ll_item_title"
         android:layout_height="50dp">
 
-        <TextView
-            android:id="@+id/tv_item_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="tv_item_title"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:layout_margin="8dp"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
     <android.support.v7.widget.CardView android:id="@+id/card"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:cardCornerRadius="16dp"
         app:cardElevation="1dp"
         app:layout_constraintTop_toBottomOf="@+id/ll_item_layout_title"
         app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:paddingBottom="50dp"
+            android:layout_height="wrap_content">
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
+
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/iv_image_hotel"
@@ -71,7 +66,6 @@
                 android:ellipsize="end"
                 android:padding="@dimen/action_padding"
                 android:singleLine="@dimen/title1_text"
-                android:text="wweffwef"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/colorText1"
                 app:layout_constraintTop_toBottomOf="@+id/iv_image_hotel" />
@@ -84,22 +78,10 @@
                 android:padding="@dimen/action_padding"
                 android:singleLine="@dimen/title2_text"
                 android:ellipsize="end"
-                android:text="wfwergffwef"
                 android:textColor="@color/colorText2"
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
 
-            <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="@dimen/action_padding"
-                android:singleLine="@dimen/title3_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/title3_text"
-                app:layout_constraintTop_toBottomOf="@+id/tv_item_body" />
+
 
             <TextView
                 android:id="@+id/tv_city"
@@ -127,7 +109,6 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_city"
                 app:layout_constraintTop_toBottomOf="@+id/iv_image_hotel" />
 
-
             <TextView
                 android:id="@+id/tv_amenities1"
                 android:layout_width="0dp"
@@ -139,7 +120,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorText2"
                 app:layout_constraintEnd_toEndOf="@+id/viewEnd"
-                app:layout_constraintStart_toEndOf="@+id/tv_price"
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_body" />
 
             <TextView
@@ -153,7 +133,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorText2"
                 app:layout_constraintEnd_toEndOf="@+id/viewEnd"
-                app:layout_constraintStart_toEndOf="@+id/tv_price"
                 app:layout_constraintTop_toBottomOf="@+id/tv_amenities1" />
 
             <TextView
@@ -167,8 +146,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorText2"
                 app:layout_constraintEnd_toEndOf="@+id/viewEnd"
-                app:layout_constraintStart_toEndOf="@+id/tv_price"
                 app:layout_constraintTop_toBottomOf="@+id/tv_amenities2" />
+
 
             <View
                 android:id="@+id/viewEnd"
@@ -179,6 +158,31 @@
 
         </android.support.constraint.ConstraintLayout>
         </ScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_item_title2"
+            android:gravity="bottom"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/action_padding"
+                android:singleLine="@dimen/title3_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorMainText"
+                android:textSize="@dimen/title3_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_body" />
+        </LinearLayout>
+
+
+
+
 
     </android.support.v7.widget.CardView>
 

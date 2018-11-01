@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.models.Hotels
 
+/**
+Model Adress with Parcelable
+ */
 
 class DetailActivity : AppCompatActivity() {
 

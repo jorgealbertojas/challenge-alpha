@@ -5,6 +5,9 @@ import com.example.jorge.desafiohotelurbano.ui.list.ListFragment
 import dagger.Component
 
 @Component(modules = arrayOf(FragmentModule::class))
+/**
+Class for support test
+ */
 interface FragmentComponent {
 
     fun inject(listFragment: ListFragment)

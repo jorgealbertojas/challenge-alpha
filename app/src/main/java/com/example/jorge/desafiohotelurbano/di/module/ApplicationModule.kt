@@ -7,6 +7,10 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+/**
+modulo for support Test
+ */
+
 @Module
 class ApplicationModule(private val baseApp: BaseApp) {
 

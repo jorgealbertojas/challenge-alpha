@@ -14,6 +14,11 @@ import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.squareup.picasso.Picasso
 
+
+/**
+Adapter list Result
+ **/
+
 class ListAdapter(private val context: Context, private val list: MutableList<Hotels>,
                   fragment: Fragment): RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
@@ -34,7 +39,7 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         holder.state!!.setText(" - " + results.address?.state!!)
 
 
-
+        // Get Three only Amenities
         when (results.amenities!!.size){
             0 -> {
                 holder.amenities1!!.setText(res?.getString(R.string.string_amenities))

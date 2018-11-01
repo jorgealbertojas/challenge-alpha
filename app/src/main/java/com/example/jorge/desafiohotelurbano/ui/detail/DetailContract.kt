@@ -3,6 +3,10 @@ package com.example.jorge.desafiohotelurbano.ui.detail
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.ui.base.BaseContract
 
+/**
+Contract all function Detail
+ **/
+
 class DetailContract {
 
     interface View: BaseContract.View {

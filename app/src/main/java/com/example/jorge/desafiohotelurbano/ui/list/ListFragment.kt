@@ -22,26 +22,16 @@ import com.example.jorge.desafiohotelurbano.util.Constants
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
+/**
+Fragment List get listContract View
+ **/
+
 class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListener {
     override fun showDetailFragment(hotels: Hotels) {
-
-      /*  if (activity!!.supportFragmentManager.findFragmentByTag(DetailFragment.TAG) == null) {
-
-            activity!!.supportFragmentManager.beginTransaction()
-                .addToBackStack(ListFragment.TAG)
-                .setCustomAnimations(MainActivity.AnimType.FADE.getAnimPair().first!!, MainActivity.AnimType.FADE.getAnimPair().second!!)
-                .replace(R.id.frame, DetailFragment().newInstance(hotels), DetailFragment.TAG)
-                .commit()
-        } else {
-            // Maybe an animation like shake hello text
-        }
-*/
-
 
         val intent = Intent(this.activity, DetailActivity::class.java)
         val args = Bundle()
         args!!.putParcelable("HOTELS_NEW", hotels  as Parcelable)
-        args!!.putString("HOTELS_NEW1", "ERFGDFDDFB")
         intent.putExtras(args)
         startActivity(intent)
 
@@ -82,11 +72,13 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
 
     override fun loadDataSuccess(list: Results) {
 
+        // Put Information Main Title
         val mainTitleList = showMainTitle(list, this.context!!)
 
         // Order list hotel based in quantity stars
         val sortedList = presenter.orderHotel(mainTitleList)
 
+        // Salve de list
         ListFragment.listResults = list
 
         var adapter = ListAdapter(this!!.activity!!, sortedList.toMutableList(), this)
@@ -136,6 +128,7 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
         presenter.subscribe()
         recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
 
+        // If exist list Result nos access service again, get in memory  and put position list when Screen rotate
         if (savedInstanceState != null) {
             ListFragment.stateRecyclerView = savedInstanceState!!.getParcelable("state")
             ListFragment.listResults = savedInstanceState!!.getParcelable("list")
@@ -181,6 +174,7 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     }
 
     private fun initView() {
+        // Verify Connection internet
       if (presenter.isNetworkAvailable(this.context!!)) {
           presenter.loadData(AppSchedulerProvider(), Constants.URL_RESULT)
       }else{

@@ -3,6 +3,10 @@ package com.example.jorge.desafiohotelurbano.util
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.TestScheduler
 
+/**
+Class for support Test
+ */
+
 class TestSchedulerProvider constructor(private val testScheduler: TestScheduler) : SchedulerProvider {
     override fun ui(): Scheduler = testScheduler
     override fun computation(): Scheduler = testScheduler

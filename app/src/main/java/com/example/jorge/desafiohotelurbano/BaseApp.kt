@@ -5,6 +5,10 @@ import com.example.jorge.desafiohotelurbano.di.component.ApplicationComponent
 import com.example.jorge.desafiohotelurbano.di.component.DaggerApplicationComponent
 import com.example.jorge.desafiohotelurbano.di.module.ApplicationModule
 
+/**
+BaseApp for all application
+ **/
+
 class BaseApp : Application() {
 
     lateinit var component: ApplicationComponent

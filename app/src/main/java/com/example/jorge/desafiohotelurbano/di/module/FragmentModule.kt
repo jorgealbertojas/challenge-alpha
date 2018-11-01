@@ -9,6 +9,10 @@ import com.example.jorge.desafiohotelurbano.util.Constants
 import dagger.Module
 import dagger.Provides
 
+/**
+modulo for support Test
+ */
+
 @Module
 class FragmentModule {
 

@@ -3,6 +3,9 @@ package com.example.jorge.desafiohotelurbano.models
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+Model Amenities with Parcelable
+ */
 
 data class  Amenities(val category : String, val name : String) : Parcelable {
     constructor(parcel: Parcel) : this(

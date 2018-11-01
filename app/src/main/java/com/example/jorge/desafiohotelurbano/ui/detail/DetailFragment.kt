@@ -14,6 +14,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
 import javax.inject.Inject
 
+/**
+Fragment Detail get function Contract view
+ **/
+
 class DetailFragment : Fragment(), DetailContract.View {
 
     @Inject

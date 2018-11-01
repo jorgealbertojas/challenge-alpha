@@ -14,6 +14,12 @@ import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
 
+
+/**
+Test for verify call service fo simulator many situation Service Api
+ **/
+
+
 class HomePresentTest {
 
     private val view: ListContract.View = mock()
@@ -31,6 +37,7 @@ class HomePresentTest {
 
     }
 
+    // Test call api json Success
     @Test
     fun test_getRepos_should_callSuccess() {
 
@@ -45,6 +52,7 @@ class HomePresentTest {
         testScheduler.triggerActions()
     }
 
+    // Test call api json null
     @Test
     fun test_getRepos_should_callNull() {
 
@@ -61,6 +69,7 @@ class HomePresentTest {
         testScheduler.triggerActions()
     }
 
+    //Test call api json Error
     @Test
     fun test_getRepos_should_callError() {
 

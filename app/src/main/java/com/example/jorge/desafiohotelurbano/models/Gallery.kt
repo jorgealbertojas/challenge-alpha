@@ -3,6 +3,9 @@ package com.example.jorge.desafiohotelurbano.models
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+Model Gallery with Parcelable
+ */
 
 data class  Gallery(val url : String) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.readString()) {

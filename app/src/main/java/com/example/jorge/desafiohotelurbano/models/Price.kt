@@ -3,6 +3,9 @@ package com.example.jorge.desafiohotelurbano.models
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+Model price with Parcelable
+ */
 
 data class  Price(val current_price : Float) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.readFloat()) {
