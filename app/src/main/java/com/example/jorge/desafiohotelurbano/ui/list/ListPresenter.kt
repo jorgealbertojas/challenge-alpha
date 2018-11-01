@@ -1,7 +1,6 @@
 package com.example.jorge.desafiohotelurbano.ui.list
 
 
-import com.example.jorge.desafiohotelurbano.api.Api
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
@@ -29,8 +28,8 @@ class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListCont
         this.view = view
     }
 
-    override fun loadData(scheduler : SchedulerProvider,  observable: Observable<Results>) {
-        var subscribe =  observable.subscribeOn(scheduler.io())
+    override fun loadData(scheduler : SchedulerProvider, url : String) {
+        var subscribe =  api.getResultsList(url).subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
             .subscribe({ results ->
                 view.showProgress(false)

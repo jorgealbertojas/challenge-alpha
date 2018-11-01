@@ -2,7 +2,6 @@ package com.example.jorge.desafiohotelurbano.homePresenter
 
 
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
-import com.example.jorge.desafiohotelurbano.api.ApiServiceInterfaceTest
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.ui.list.ListContract
 import com.example.jorge.desafiohotelurbano.ui.list.ListPresenter
@@ -19,7 +18,7 @@ import org.junit.Test
 class HomePresentTest {
 
     private val view: ListContract.View = mock()
-    private val api: ApiServiceInterfaceTest = mock()
+    private val api: ApiServiceInterface = mock()
     private lateinit var presenter: ListPresenter
     private lateinit var testScheduler: TestScheduler
 
@@ -27,7 +26,7 @@ class HomePresentTest {
     @Before
     fun setup() {
 
-        presenter = ListPresenter(ApiServiceInterfaceTest.create(ConstantsTest.BASE_URL_TEST))
+        presenter = ListPresenter(ApiServiceInterface.create(ConstantsTest.BASE_URL_TEST))
         presenter.attach(view)
         presenter.subscribe()
 
@@ -38,11 +37,39 @@ class HomePresentTest {
 
         doReturn(Observable.just(Results.CREATOR))
             .`when`(api)
-            .getResultsList()
+            .getResultsList(ConstantsTest.URL_RESULT_TEST)
 
         testScheduler = TestScheduler()
         val testSchedulerProvider = TestSchedulerProvider(testScheduler)
-        presenter.loadData(testSchedulerProvider)
+        presenter.loadData(testSchedulerProvider,ConstantsTest.URL_RESULT_TEST)
+
+        testScheduler.triggerActions()
+    }
+
+    @Test
+    fun test_getRepos_should_callNull() {
+
+        doReturn(Observable.just(Results.CREATOR))
+            .`when`(api)
+            .getResultsList(ConstantsTest.URL_RESULT_TEST_NULL)
+
+        testScheduler = TestScheduler()
+        val testSchedulerProvider = TestSchedulerProvider(testScheduler)
+        presenter.loadData(testSchedulerProvider,ConstantsTest.URL_RESULT_TEST_NULL)
+
+        testScheduler.triggerActions()
+    }
+
+    @Test
+    fun test_getRepos_should_callError() {
+
+        doReturn(Observable.just(Results.CREATOR))
+            .`when`(api)
+            .getResultsList(ConstantsTest.URL_RESULT_TEST_ERROR)
+
+        testScheduler = TestScheduler()
+        val testSchedulerProvider = TestSchedulerProvider(testScheduler)
+        presenter.loadData(testSchedulerProvider,ConstantsTest.URL_RESULT_TEST_ERROR)
 
         testScheduler.triggerActions()
     }

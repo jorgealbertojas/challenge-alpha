@@ -23,7 +23,7 @@ class ListContract {
 
     interface Presenter: BaseContract.Presenter<View> {
 
-        fun loadData(scheduler : SchedulerProvider, observable: Observable<Results>)
+        fun loadData(scheduler : SchedulerProvider, url : String)
         fun loadDataCache(list: Results)
         fun loadDataAll()
         fun orderHotel(list: List<Hotels>): List<Hotels>
