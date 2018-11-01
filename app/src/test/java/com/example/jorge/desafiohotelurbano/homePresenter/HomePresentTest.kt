@@ -5,7 +5,6 @@ import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.ui.list.ListContract
 import com.example.jorge.desafiohotelurbano.ui.list.ListPresenter
-import com.example.jorge.desafiohotelurbano.util.Constants
 import com.example.jorge.desafiohotelurbano.util.ConstantsTest
 import com.example.jorge.desafiohotelurbano.util.TestSchedulerProvider
 import com.nhaarman.mockito_kotlin.doReturn
@@ -49,6 +48,8 @@ class HomePresentTest {
     @Test
     fun test_getRepos_should_callNull() {
 
+
+
         doReturn(Observable.just(Results.CREATOR))
             .`when`(api)
             .getResultsList(ConstantsTest.URL_RESULT_TEST_NULL)
@@ -62,6 +63,8 @@ class HomePresentTest {
 
     @Test
     fun test_getRepos_should_callError() {
+
+
 
         doReturn(Observable.just(Results.CREATOR))
             .`when`(api)

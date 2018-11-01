@@ -1,6 +1,9 @@
 package com.example.jorge.desafiohotelurbano.ui.list
 
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.example.jorge.desafiohotelurbano.models.Results
@@ -28,7 +31,15 @@ class ListPresenter @Inject constructor(var api : ApiServiceInterface): ListCont
         this.view = view
     }
 
-    override fun loadData(scheduler : SchedulerProvider, url : String) {
+    override fun isNetworkAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var activeNetworkInfo: NetworkInfo? = null
+        activeNetworkInfo = cm.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
+    }
+
+    override fun loadData(scheduler : SchedulerProvider, url : String)  {
+
         var subscribe =  api.getResultsList(url).subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
             .subscribe({ results ->

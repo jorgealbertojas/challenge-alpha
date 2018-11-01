@@ -22,7 +22,7 @@ class ListContract {
 
 
     interface Presenter: BaseContract.Presenter<View> {
-
+        fun isNetworkAvailable(context: Context): Boolean
         fun loadData(scheduler : SchedulerProvider, url : String)
         fun loadDataCache(list: Results)
         fun loadDataAll()

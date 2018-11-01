@@ -1,13 +1,11 @@
 package com.example.jorge.desafiohotelurbano.ui.detail
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.support.v7.app.AppCompatActivity
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.models.Hotels
-import com.example.jorge.desafiohotelurbano.ui.list.ListFragment
-import com.example.jorge.desafiohotelurbano.ui.main.MainActivity
 
 
 class DetailActivity : AppCompatActivity() {

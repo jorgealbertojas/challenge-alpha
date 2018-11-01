@@ -10,8 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.jorge.desafiohotelurbano.R
-import com.example.jorge.desafiohotelurbano.api.ApiServiceInterface
 import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
 import com.example.jorge.desafiohotelurbano.models.Hotels
@@ -19,7 +19,6 @@ import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.ui.detail.DetailActivity
 import com.example.jorge.desafiohotelurbano.util.AppSchedulerProvider
 import com.example.jorge.desafiohotelurbano.util.Constants
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
@@ -131,8 +130,6 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
         return rootView
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attach(this)
@@ -165,23 +162,6 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
         Log.e("Error", error)
     }
 
-/*    override fun loadDataSuccess(list: List<Results>) {
-        var adapter = ListAdapter(this!!.activity!!, list.toMutableList(), this)
-        recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
-        recyclerView!!.setAdapter(adapter)
-
-*//*        val swipeHandler = object : SwipeToDelete(activity) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val adapter = recyclerView.adapter as ListAdapter
-                adapter.removeAt(viewHolder.adapterPosition)
-            }
-        }*//*
-
-       // val itemTouchHelper = ItemTouchHelper(swipeHandler)
-        //itemTouchHelper.attachToRecyclerView(recyclerView)
-    }*/
-
-
     override fun itemRemoveClick(postId: String) {
 
         TODO("not implemented")
@@ -201,8 +181,11 @@ class ListFragment: Fragment(), ListContract.View, ListAdapter.onItemClickListen
     }
 
     private fun initView() {
-
-        presenter.loadData(AppSchedulerProvider(),Constants.URL_RESULT)
+      if (presenter.isNetworkAvailable(this.context!!)) {
+          presenter.loadData(AppSchedulerProvider(), Constants.URL_RESULT)
+      }else{
+          Toast.makeText(this.context, this.context?.getResources()!!.getString(R.string.string_message_internet), Toast.LENGTH_LONG).show()
+      }
     }
 
     companion object {

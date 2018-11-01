@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.example.jorge.desafiohotelurbano.R
 import com.example.jorge.desafiohotelurbano.di.component.DaggerFragmentComponent
 import com.example.jorge.desafiohotelurbano.di.module.FragmentModule
@@ -16,7 +15,6 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 import javax.inject.Inject
 
 class DetailFragment : Fragment(), DetailContract.View {
-
 
     @Inject
     lateinit var presenter: DetailContract.Presenter
@@ -31,8 +29,6 @@ class DetailFragment : Fragment(), DetailContract.View {
 
         return fragment
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

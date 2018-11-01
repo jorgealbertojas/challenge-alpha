@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.jorge.desafiohotelurbano.R
-import com.example.jorge.desafiohotelurbano.models.Results
 import com.example.jorge.desafiohotelurbano.models.Hotels
 import com.squareup.picasso.Picasso
 
@@ -103,11 +102,6 @@ class ListAdapter(private val context: Context, private val list: MutableList<Ho
         val amenities2 = itemView.findViewById<TextView>(R.id.tv_amenities2)
         val amenities3 = itemView.findViewById<TextView>(R.id.tv_amenities3)
 
-
-        fun bind(item: Results) {
-            // title = item.post
-            // body etc.
-        }
     }
 
     interface onItemClickListener {

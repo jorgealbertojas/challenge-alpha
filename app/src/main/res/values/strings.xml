@@ -6,4 +6,6 @@
 
     <string name="string_amenities">Não existe amenidades</string>
     <string name="string_money">R$ </string>
+
+    <string name="string_message_internet">Não tem coneção de internet</string>
 </resources>

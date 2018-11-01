@@ -8,7 +8,6 @@ import com.example.jorge.desafiohotelurbano.ui.list.ListPresenter
 import com.example.jorge.desafiohotelurbano.util.Constants
 import dagger.Module
 import dagger.Provides
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 @Module
 class FragmentModule {

@@ -3,7 +3,7 @@ package com.example.jorge.desafiohotelurbano.ui.main
 import com.example.jorge.desafiohotelurbano.ui.base.BaseContract
 
 /**
- *
+ * Main contract for support all application
  */
 class MainContract {
 
